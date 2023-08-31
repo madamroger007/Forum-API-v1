@@ -23,9 +23,12 @@ const AuthenticationRepository = require('../Domains/authentications/Authenticat
 const AuthenticationRepositoryPostgres = require('./repository/AuthenticationRepositoryPostgres');
 const LogoutUserUseCase = require('../Applications/use_case/LogoutUserUseCase');
 const RefreshAuthenticationUseCase = require('../Applications/use_case/RefreshAuthenticationUseCase');
+
+// treadh use case
 const ThreadRepository = require("../Domains/threads/ThreadRepository");
 const ThreadRepositoryPostgres = require("./repository/ThreadRepositoryPostgres")
 const AddThreadUseCase = require("../Applications/use_case/AddThreadUseCase")
+
 // creating container
 const container = createContainer();
 
@@ -84,7 +87,8 @@ container.register([
       dependencies: [
         {
           concrete: pool,
-        },{
+        },
+        {
           concrete: nanoid,
         }
       ]
@@ -165,7 +169,8 @@ container.register([
         },
       ],
     },
-  },{
+  },
+  {
     key: AddThreadUseCase.name,
     Class: AddThreadUseCase,
     parameter: {

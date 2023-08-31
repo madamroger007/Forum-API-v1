@@ -37,8 +37,8 @@ describe('an addThread entity', () => {
     const {id,title,owner}= new addThread(payload);
 
     // Assert
-    expect(id).toEqual(payload.id);
     expect(title).toEqual(payload.title);
+    expect(id).toEqual(payload.id);
     expect(owner).toEqual(payload.owner);
   });
 });

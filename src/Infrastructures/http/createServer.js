@@ -30,7 +30,7 @@ server.auth.strategy('forumapi_jwt', 'jwt', {
   validate: (artifacts) => ({
     isValid: true,
     credentials: {
-      id: artifacts.decoded.payload.id,
+      user: artifacts.decoded.payload.id,
     },
   }),
 });
@@ -50,6 +50,8 @@ server.auth.strategy('forumapi_jwt', 'jwt', {
     },
   ]);
 
+
+  
   server.ext('onPreResponse', (request, h) => {
     // mendapatkan konteks response dari request
     const { response } = request;

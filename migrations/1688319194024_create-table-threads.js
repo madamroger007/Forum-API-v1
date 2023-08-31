@@ -10,23 +10,26 @@ exports.up = pgm => {
         },
         title: {
           type: 'TEXT',
+          notNull: true,
         },
         body: {
           type: 'TEXT',
-        },
-        date: {
-          type: 'TIMESTAMP',
-          default: pgm.func('current_timestamp')  
+          notNull: true,
         },
         owner: {
             type:'VARCHAR(50)',
             notNull: true,
-        }
+        },
+         date: {
+          type: 'TIMESTAMP',
+          notNull: true,
+        },
       });
 
       pgm.addConstraint('threads', 'fk_threads.owner_users.id', 'FOREIGN KEY(owner) REFERENCES users(id) ON DELETE CASCADE');
 };
 
 exports.down = pgm => {
+  pgm.dropConstraint('threads', 'fk_threads.owner_users.id');
     pgm.dropTable('threads');
 };
