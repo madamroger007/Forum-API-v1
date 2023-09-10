@@ -1,19 +1,18 @@
-/* eslint-disable max-len */
 const AddedComment = require('../AddedComment');
 
-describe('a AddedComment entities', () => {
-  it('should throw error when payload did not contain needed property', () => {
+describe('AddedComment entity', () => {
+  it('should throw an error when the payload does not contain the required properties', () => {
     // Arrange
     const payload = {
       id: 'comment-123',
       content: 'sebuah comment',
     };
 
-    // Action and Assert
+    // Act & Assert
     expect(() => new AddedComment(payload)).toThrowError('ADDED_COMMENT.NOT_CONTAIN_NEEDED_PROPERTY');
   });
 
-  it('should throw error when payload did not meet data type specification', () => {
+  it('should throw an error when the payload does not meet the data type specification', () => {
     // Arrange
     const payload = {
       id: 'comment-123',
@@ -21,11 +20,11 @@ describe('a AddedComment entities', () => {
       owner: 'user-123',
     };
 
-    // Action and Assert
+    // Act & Assert
     expect(() => new AddedComment(payload)).toThrowError('ADDED_COMMENT.NOT_MEET_DATA_TYPE_SPECIFICATION');
   });
 
-  it('should create AddedComment object correctly', () => {
+  it('should create an AddedComment object correctly', () => {
     // Arrange
     const payload = {
       id: 'comment-123',
@@ -33,12 +32,13 @@ describe('a AddedComment entities', () => {
       owner: 'user-123',
     };
 
-    // Action
-    const { id, content, owner } = new AddedComment(payload);
+    // Act
+    const addedComment = new AddedComment(payload);
 
     // Assert
-    expect(id).toEqual(payload.id);
-    expect(content).toEqual(payload.content);
-    expect(owner).toEqual(payload.owner);
+    expect(addedComment).toBeInstanceOf(AddedComment);
+    expect(addedComment.id).toEqual(payload.id);
+    expect(addedComment.content).toEqual(payload.content);
+    expect(addedComment.owner).toEqual(payload.owner);
   });
 });

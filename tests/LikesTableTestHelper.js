@@ -6,7 +6,7 @@ const LikesTableTestHelper = {
     id = 'like-123',
     commentId = 'comment-123',
     userId = 'user-123',
-    date = '2023-01-19T07:00:00.000Z',
+    date = '2023-10-30T07:26:17.000Z',
   }) {
     const query = {
       text: 'INSERT INTO likes_comment VALUES($1, $2, $3, $4)',

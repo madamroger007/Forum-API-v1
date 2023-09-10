@@ -1,7 +1,7 @@
 const pool = require('../../database/postgres/pool');
 const container = require('../../container');
 const createServer = require('../createServer');
-const ServerTestHelper = require('../../../../tests/UsersLoginTestHelper');
+const LoginUserTest = require('../../../../tests/UsersLoginTestHelper');
 
 const UsersTableTestHelper = require('../../../../tests/UsersTableTestHelper');
 const AuthenticationsTableTestHelper = require('../../../../tests/AuthenticationsTableTestHelper');
@@ -43,7 +43,7 @@ describe('endpoints to manage likes', () => {
     it('should response 404 when thread not found', async () => {
       // Arrange
       const server = await createServer(container);
-      const { accessToken } = await ServerTestHelper.getAccessTokenAndUserIdHelper({
+      const { accessToken } = await LoginUserTest.getAccessTokenAndUserIdHelper({
         server,
       });
 
@@ -72,7 +72,7 @@ describe('endpoints to manage likes', () => {
       });
 
       const server = await createServer(container);
-      const { accessToken } = await ServerTestHelper.getAccessTokenAndUserIdHelper({
+      const { accessToken } = await LoginUserTest.getAccessTokenAndUserIdHelper({
         server,
       });
 
@@ -108,7 +108,7 @@ describe('endpoints to manage likes', () => {
       });
 
       const server = await createServer(container);
-      const { accessToken } = await ServerTestHelper.getAccessTokenAndUserIdHelper({
+      const { accessToken } = await LoginUserTest.getAccessTokenAndUserIdHelper({
         server,
       });
 

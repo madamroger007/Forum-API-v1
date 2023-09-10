@@ -1,7 +1,7 @@
 const pool = require('../../database/postgres/pool');
 const container = require('../../container');
 const createServer = require('../createServer');
-const ServerTestHelper = require('../../../../tests/UsersLoginTestHelper');
+const LoginUserTest = require('../../../../tests/UsersLoginTestHelper');
 const ThreadTableTestHelper = require('../../../../tests/ThreadTableTestHelper');
 const UsersTableTestHelper = require('../../../../tests/UsersTableTestHelper');
 
@@ -42,7 +42,7 @@ describe('/threads endpoint', () => {
       };
       const server = await createServer(container);
 
-      const { accessToken } = await ServerTestHelper.getAccessTokenAndUserIdHelper({ server });
+      const { accessToken } = await LoginUserTest.getAccessTokenAndUserIdHelper({ server });
 
       // Action
       const response = await server.inject({
@@ -69,7 +69,7 @@ describe('/threads endpoint', () => {
       };
       const server = await createServer(container);
 
-      const { accessToken } = await ServerTestHelper.getAccessTokenAndUserIdHelper({ server });
+      const { accessToken } = await LoginUserTest.getAccessTokenAndUserIdHelper({ server });
 
       // Action
       const response = await server.inject({
@@ -96,7 +96,7 @@ describe('/threads endpoint', () => {
       };
       const server = await createServer(container);
 
-      const { accessToken } = await ServerTestHelper.getAccessTokenAndUserIdHelper({ server });
+      const { accessToken } = await LoginUserTest.getAccessTokenAndUserIdHelper({ server });
 
       // Action
       const response = await server.inject({

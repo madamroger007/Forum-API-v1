@@ -1,7 +1,7 @@
 const AddedThread = require('../AddedThread');
 
-describe('a AddedThread entities', () => {
-  it('should throw error when payload not contain needed property', () => {
+describe('AddedThread Entity', () => {
+  it('throws an error when payload lacks necessary properties', () => {
     // Arrange
     const payload = {
       id: 'thread-123',
@@ -14,7 +14,7 @@ describe('a AddedThread entities', () => {
     );
   });
 
-  it('should throw error when payload not meet data type specification', () => {
+  it('throws an error when payload contains incorrect data types', () => {
     // Arrange
     const payload = {
       id: 'thread-123',
@@ -28,7 +28,7 @@ describe('a AddedThread entities', () => {
     );
   });
 
-  it('should create AddedThread entities correctly', () => {
+  it('creates an AddedThread entity with valid payload', () => {
     // Arrange
     const payload = {
       id: 'thread-123',

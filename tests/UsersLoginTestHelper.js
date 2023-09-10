@@ -1,11 +1,9 @@
 // istanbul ignore file
 const UsersLoginTestHelper = {
-  async getAccessTokenAndUserIdHelper({ server, username = "dicoding" }) {
+  async getAccessTokenAndUserIdHelper({ server }) {
     // payload
     const userPayload = {
-      username:
-        Math.random().toString(36).substring(2, 5) +
-        Math.random().toString(36).substring(2, 5),
+      username: Math.random().toString(36).substring(2, 5),
       password: "secret",
     };
 
@@ -20,7 +18,7 @@ const UsersLoginTestHelper = {
     const userAuth = await server.inject({
       method: "POST",
       url: "/authentications",
-      payload: userPayload
+      payload: userPayload,
     });
 
     const { id: userId } = JSON.parse(userLogin.payload).data.addedUser;

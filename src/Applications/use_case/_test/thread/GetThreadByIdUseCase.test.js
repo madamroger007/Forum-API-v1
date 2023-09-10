@@ -14,7 +14,7 @@ describe('GetThreadUseCase', () => {
       id: 'thread-123',
       title: 'ini adalah judul thread',
       body: 'ini adalah isi thread',
-      date: '2022',
+      date: '2023',
       username: 'dicoding',
     };
 
@@ -22,7 +22,7 @@ describe('GetThreadUseCase', () => {
       {
         id: 'comment-123',
         username: 'dicoding',
-        date: '2022',
+        date: '2023',
         content: 'ini adalah isi komentar',
         is_deleted: false,
       },
@@ -32,7 +32,7 @@ describe('GetThreadUseCase', () => {
       {
         id: 'reply-123',
         content: 'ini adalah isi balasan',
-        date: '2022',
+        date: '2023',
         username: 'jhon',
         comment_id: 'comment-123',
         is_deleted: false,
@@ -105,7 +105,7 @@ describe('GetThreadUseCase', () => {
       id: 'thread-123',
       title: 'ini adalah judul thread',
       body: 'ini adalah isi thread',
-      date: '2022',
+      date: '2023',
       username: 'dicoding',
     };
 
@@ -113,7 +113,7 @@ describe('GetThreadUseCase', () => {
       {
         id: 'comment-123',
         username: 'dicoding',
-        date: '2022',
+        date: '2023',
         content: '**komentar telah dihapus**',
         is_deleted: true,
       },
@@ -123,7 +123,7 @@ describe('GetThreadUseCase', () => {
       {
         id: 'reply-123',
         content: '**balasan telah dihapus**',
-        date: '2022',
+        date: '2023',
         username: 'jhon',
         comment_id: 'comment-123',
         is_deleted: true,

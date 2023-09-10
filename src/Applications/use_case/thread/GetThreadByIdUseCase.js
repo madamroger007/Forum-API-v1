@@ -1,21 +1,19 @@
-class getThreadByIdUseCase {
+class GetThreadByIdUseCase {
   constructor({ commentRepository, threadRepository, likeRepository }) {
     this._commentRepository = commentRepository;
     this._threadRepository = threadRepository;
-    this._likeUnlikeRepository = likeRepository;
+    this._likeRepository = likeRepository;
   }
 
   async execute(threadId) {
-    const thread = await this._threadRepository.getThreadById(threadId);
-    let comments = await this._commentRepository.getCommentsByThreadId(
-      threadId
-    );
-    const replies = await this._threadRepository.getRepliesByThreadId(threadId);
-    const likesCount = await this._likeUnlikeRepository.getLikeCountComment(
-      threadId
-    );
+    const [thread, comments, replies, likesCount] = await Promise.all([
+      this._threadRepository.getThreadById(threadId),
+      this._commentRepository.getCommentsByThreadId(threadId),
+      this._threadRepository.getRepliesByThreadId(threadId),
+      this._likeRepository.getLikeCountComment(threadId),
+    ]);
 
-    comments = comments.map((comment) => ({
+    const processedComments = comments.map((comment) => ({
       id: comment.id,
       username: comment.username,
       date: comment.date,
@@ -38,9 +36,9 @@ class getThreadByIdUseCase {
 
     return {
       ...thread,
-      comments,
+      comments: processedComments,
     };
   }
 }
 
-module.exports = getThreadByIdUseCase;
+module.exports = GetThreadByIdUseCase;

@@ -107,7 +107,7 @@ describe('ThreadRepositoryPostgres', () => {
         id: 'thread-123',
         title: 'sebuah thread',
         body: 'sebuah body',
-        date: new Date('2023-01-19T00:00:00.000Z'),
+        date: new Date('2023-10-30T07:26:17.000Z'),
         username: 'dicoding',
       });
     });
@@ -159,7 +159,7 @@ describe('ThreadRepositoryPostgres', () => {
         id: 'reply-123',
         comment_id: 'comment-123',
         username: 'dicoding',
-        date: new Date('2023-01-19T00:00:00.000Z'),
+        date: new Date('2023-10-30T07:26:17.000Z'),
         content: 'sebuah balasan',
         owner: 'user-123',
         is_deleted: false,

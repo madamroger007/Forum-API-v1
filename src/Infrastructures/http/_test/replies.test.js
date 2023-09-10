@@ -1,7 +1,7 @@
 const pool = require('../../database/postgres/pool');
 const container = require('../../container');
 const createServer = require('../createServer');
-const ServerTestHelper = require('../../../../tests/UsersLoginTestHelper');
+const LoginUserTest = require('../../../../tests/UsersLoginTestHelper');
 const UsersTableTestHelper = require('../../../../tests/UsersTableTestHelper');
 const AuthenticationsTableTestHelper = require('../../../../tests/AuthenticationsTableTestHelper');
 const ThreadTableTestHelper = require('../../../../tests/ThreadTableTestHelper');
@@ -56,7 +56,7 @@ describe('end point add reply', () => {
       const server = await createServer(container);
 
       /* login to get accessToken and userId */
-      const { accessToken } = await ServerTestHelper
+      const { accessToken } = await LoginUserTest
         .getAccessTokenAndUserIdHelper({ server });
       const threadId = 'thread-123';
       const commentId = 'comment-123';
@@ -93,7 +93,7 @@ describe('end point add reply', () => {
       const server = await createServer(container);
 
       /* login to get accessToken and userId */
-      const { accessToken } = await ServerTestHelper
+      const { accessToken } = await LoginUserTest
         .getAccessTokenAndUserIdHelper({ server });
       const threadId = 'thread-123';
 
@@ -136,7 +136,7 @@ describe('end point add reply', () => {
       const server = await createServer(container);
 
       /* login to get accessToken and userId */
-      const { accessToken } = await ServerTestHelper
+      const { accessToken } = await LoginUserTest
         .getAccessTokenAndUserIdHelper({ server });
       const threadId = 'thread-123';
       const commentId = 'comment-123';
@@ -180,7 +180,7 @@ describe('end point add reply', () => {
       const server = await createServer(container);
 
       /* login to get accessToken and userId */
-      const { accessToken } = await ServerTestHelper
+      const { accessToken } = await LoginUserTest
         .getAccessTokenAndUserIdHelper({ server });
       const threadId = 'thread-123';
       const commentId = 'comment-123';
@@ -225,7 +225,7 @@ describe('end point add reply', () => {
       const server = await createServer(container);
 
       /* login to get accessToken and userId */
-      const { accessToken, userId } = await ServerTestHelper
+      const { accessToken, userId } = await LoginUserTest
         .getAccessTokenAndUserIdHelper({ server });
       const threadId = 'thread-123';
       const commentId = 'comment-123';
@@ -294,7 +294,7 @@ describe('end point add reply', () => {
       const server = await createServer(container);
 
       /* login to get accessToken and userId */
-      const { accessToken } = await ServerTestHelper
+      const { accessToken } = await LoginUserTest
         .getAccessTokenAndUserIdHelper({ server });
       const threadId = 'thread-xxx';
       const commentId = 'comment-123';
@@ -337,7 +337,7 @@ describe('end point add reply', () => {
       const server = await createServer(container);
 
       /* login to get accessToken and userId */
-      const { accessToken } = await ServerTestHelper
+      const { accessToken } = await LoginUserTest
         .getAccessTokenAndUserIdHelper({ server });
       const threadId = 'thread-123';
       const commentId = 'comment-xxx';
@@ -380,7 +380,7 @@ describe('end point add reply', () => {
       const server = await createServer(container);
 
       /* login to get accessToken and userId */
-      const { accessToken } = await ServerTestHelper
+      const { accessToken } = await LoginUserTest
         .getAccessTokenAndUserIdHelper({ server });
       const threadId = 'thread-123';
       const commentId = 'comment-123';
@@ -407,7 +407,7 @@ describe('end point add reply', () => {
       const server = await createServer(container);
 
       /* login and add thread to get accessToken and threadId */
-      const { accessToken, userId } = await ServerTestHelper.getAccessTokenAndUserIdHelper({ server });
+      const { accessToken, userId } = await LoginUserTest.getAccessTokenAndUserIdHelper({ server });
       const threadId = 'thread-123';
       const commentId = 'comment-123';
       const replyId = 'reply-123';
@@ -446,7 +446,7 @@ describe('end point add reply', () => {
       const server = await createServer(container);
 
       /* login to get accessToken and userId */
-      const { accessToken, userId } = await ServerTestHelper.getAccessTokenAndUserIdHelper({ server });
+      const { accessToken, userId } = await LoginUserTest.getAccessTokenAndUserIdHelper({ server });
 
       // arrange
       const threadId = 'thread-123';
