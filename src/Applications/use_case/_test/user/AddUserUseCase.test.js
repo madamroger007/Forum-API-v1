@@ -1,8 +1,8 @@
-const RegisterUser = require('../../../Domains/users/entities/RegisterUser');
-const RegisteredUser = require('../../../Domains/users/entities/RegisteredUser');
-const UserRepository = require('../../../Domains/users/UserRepository');
-const PasswordHash = require('../../security/PasswordHash');
-const AddUserUseCase = require('../AddUserUseCase');
+const RegisterUser = require('../../../../Domains/users/entities/RegisterUser');
+const RegisteredUser = require('../../../../Domains/users/entities/RegisteredUser');
+const UserRepository = require('../../../../Domains/users/UserRepository');
+const PasswordHash = require('../../../security/PasswordHash');
+const AddUserUseCase = require('../../user/AddUserUseCase');
 
 describe('AddUserUseCase', () => {
   /**

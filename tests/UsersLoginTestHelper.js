@@ -1,41 +1,36 @@
 // istanbul ignore file
 const UsersLoginTestHelper = {
-    async getUserIdAndAccessTokenObject({ server }) {
+  async getAccessTokenAndUserIdHelper({ server, username = "dicoding" }) {
+    // payload
+    const userPayload = {
+      username:
+        Math.random().toString(36).substring(2, 5) +
+        Math.random().toString(36).substring(2, 5),
+      password: "secret",
+    };
 
-      // payload
-      const userPayload = {
-        username: 'dicoding',
-        password: 'secret',
-        fullname: 'Dicoding Indonesia',
-      }
+    // user registration
+    const userLogin = await server.inject({
+      method: "POST",
+      url: "/users",
+      payload: { ...userPayload, fullname: "placeholder fullname" },
+    });
 
+    // user login
+    const userAuth = await server.inject({
+      method: "POST",
+      url: "/authentications",
+      payload: userPayload
+    });
 
-      // user registration
-      const userLogin = await server.inject({
-        method: 'POST',
-        url: '/users',
-        payload: userPayload,
-      });
-      
-  
-      // user login
-      const userAuth = await server.inject({
-        method: 'POST',
-        url: '/authentications',
-        payload:{
-          username: userPayload.username,
-          password: userPayload.password
-        }
-      });
-      
-      const { id: userId } = JSON.parse(userLogin.payload).data.addedUser;
-      const { accessToken  } = JSON.parse(userAuth.payload).data;
-  
-      return {
-        userId,
-        accessToken,
-      };
-    },
-  };
-  
-  module.exports = UsersLoginTestHelper;
+    const { id: userId } = JSON.parse(userLogin.payload).data.addedUser;
+    const { accessToken } = JSON.parse(userAuth.payload).data;
+
+    return {
+      userId,
+      accessToken,
+    };
+  },
+};
+
+module.exports = UsersLoginTestHelper;

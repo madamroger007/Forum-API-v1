@@ -5,11 +5,19 @@ const DomainErrorTranslator = require('../../Commons/exceptions/DomainErrorTrans
 const users = require('../../Interfaces/http/api/users');
 const authentications = require('../../Interfaces/http/api/authentications');
 const threads = require("../../Interfaces/http/api/threads")
+const comments = require('../../Interfaces/http/api/comments');
+const replies = require('../../Interfaces/http/api/replies');
+const likes = require('../../Interfaces/http/api/likes');
 
 const createServer = async (container) => {
   const server = Hapi.server({
     host: process.env.HOST,
     port: process.env.PORT,
+    routes: {
+      cors: {
+        origin: ['*'],
+      },
+    },
   });
 
  // registrasi plugin eksternal
@@ -30,7 +38,7 @@ server.auth.strategy('forumapi_jwt', 'jwt', {
   validate: (artifacts) => ({
     isValid: true,
     credentials: {
-      user: artifacts.decoded.payload.id,
+      id: artifacts.decoded.payload.id,
     },
   }),
 });
@@ -47,6 +55,18 @@ server.auth.strategy('forumapi_jwt', 'jwt', {
     {
       plugin: threads,
       options:{ container },
+    },
+    {
+      plugin: comments,
+      options: { container },
+    },
+    {
+      plugin: replies,
+      options: { container },
+    },
+    {
+      plugin: likes,
+      options: { container },
     },
   ]);
 
