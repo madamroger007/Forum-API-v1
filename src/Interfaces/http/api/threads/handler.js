@@ -1,17 +1,26 @@
-const AddThreadUseCase = require("../../../../Applications/use_case/AddThreadUseCase")
+const AddThreadUseCase = require("../../../../Applications/use_case/thread/AddThreadUseCase");
+const GetThreadByIdUseCase = require("../../../../Applications/use_case/thread/GetThreadByIdUseCase");
 
-class ThreadsHandler {
+class ThreadHandler {
   constructor(container) {
-   this._container = container;
-
-   this.postThreadsHandler = this.postThreadsHandler.bind(this);
+    this._container = container;
+    this.postThreadHandler = this.postThreadHandler.bind(this);
+    this.getThreadByIdHandler = this.getThreadByIdHandler.bind(this);
   }
-  async postThreadsHandler(request, h) {
-    const { user: owner} = request.auth.credentials.user;
-    const addThreadUseCase = this_container.getInstance(AddThreadUseCase.name)
-    const addedThread = await addThreadUseCase.execute({...request.payload ,owner})
+
+  async postThreadHandler({ payload, auth }, h) {
+    const usecasePayload = {
+      title: payload.title,
+      body: payload.body,
+      owner: auth.credentials.id,
+    };
+
+    const addThreadUseCase = this._container.getInstance(AddThreadUseCase.name);
+    const addedThread = await addThreadUseCase.execute(usecasePayload);
+
     const response = h.response({
-      status: 'success',
+      status: "success",
+      message: "Thread berhasil ditambahkan",
       data: {
         addedThread,
       },
@@ -19,7 +28,20 @@ class ThreadsHandler {
     response.code(201);
     return response;
   }
+
+  async getThreadByIdHandler(request) {
+    const getThreadByIdUseCase = this._container.getInstance(
+      GetThreadByIdUseCase.name
+    );
+    const thread = await getThreadByIdUseCase.execute(request.params.threadId);
+
+    return {
+      status: "success",
+      data: {
+        thread,
+      },
+    };
+  }
 }
 
-
-module.exports = ThreadsHandler
+module.exports = ThreadHandler;
