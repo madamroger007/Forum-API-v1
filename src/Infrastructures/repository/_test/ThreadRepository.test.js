@@ -132,8 +132,11 @@ describe('ThreadRepositoryPostgres', () => {
       const threadRepositoryPostgres = new ThreadRepositoryPostgres(pool, {});
       await ThreadTableTestHelper.addThread({ id: 'thread-123' });
 
-      // Action & Assert
-      await expect(threadRepositoryPostgres.verifyAvailableThread('thread-123')).resolves.not.toThrowError(NotFoundError);
+     // Action
+    const verifyPromise = threadRepositoryPostgres.verifyAvailableThread('thread-123');
+
+    // Assert
+    await expect(verifyPromise).resolves.not.toThrowError(NotFoundError);
     });
   });
 

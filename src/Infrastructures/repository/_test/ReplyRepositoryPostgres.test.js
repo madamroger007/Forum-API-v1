@@ -89,8 +89,11 @@ describe('ReplyRepositoryPostgres', () => {
         });
         const replyRepositoryPostgres = new ReplyRepositoryPostgres(pool, {});
 
-        // action & assert
-        await expect(replyRepositoryPostgres.verifyAvailableReply('thread-123', 'comment-123', 'reply-123')).resolves.not.toThrowError(NotFoundError);
+       // action
+    const verifyPromise = replyRepositoryPostgres.verifyAvailableReply('thread-123', 'comment-123', 'reply-123');
+
+    // assert
+    await expect(verifyPromise).resolves.not.toThrowError(NotFoundError);
       });
     });
 
@@ -118,7 +121,9 @@ describe('ReplyRepositoryPostgres', () => {
         const replyRepositoryPostgres = new ReplyRepositoryPostgres(pool, {});
 
         // action & assert
-        await expect(replyRepositoryPostgres.verifyReplyOwner('reply-123', 'user-123')).resolves.not.toThrowError(AuthorizationError);
+      const verifyPromise = replyRepositoryPostgres.verifyReplyOwner('reply-123', 'user-123');
+
+        await expect(verifyPromise).resolves.not.toThrowError(AuthorizationError);
       });
     });
 

@@ -22,7 +22,7 @@ describe('AddThreadUseCase', () => {
 
     // Mock ThreadRepository
     const mockThreadRepository = {
-      addThread: jest.fn().mockResolvedValue(expectedAddedThread),
+      addThread: jest.fn().mockReturnValue(expectedAddedThread),
     };
 
     const addThreadUseCase = new AddThreadUseCase({

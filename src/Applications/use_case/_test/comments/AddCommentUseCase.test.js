@@ -25,19 +25,22 @@ describe('AddCommentUseCase', () => {
     const mockCommentRepository = new CommentRepository();
     const mockThreadRepository = new ThreadRepository();
 
-    /** mocking needed function */
-    mockThreadRepository.verifyAvailableThread = jest.fn()
-      .mockImplementation(() => Promise.resolve());
-    mockCommentRepository.addComment = jest.fn()
-      .mockImplementation(() => Promise.resolve(
-        new AddedComment({
-          id: 'comment-123',
-          content: useCasePayload.content,
-          threadId: useCasePayload.threadId,
-          date: '2022-12-30T07:26:17.000Z',
-          owner: useCasePayload.owner,
-        }),
-      ));
+   /** mocking needed function */
+mockThreadRepository.verifyAvailableThread = jest.fn()
+.mockImplementation(() => Promise.resolve({
+  isAvailable: true,
+}));
+
+mockCommentRepository.addComment = jest.fn()
+.mockImplementation(() => Promise.resolve(
+  new AddedComment({
+    id: 'comment-123',
+    content: useCasePayload.content,
+    threadId: useCasePayload.threadId,
+    date: '2022-12-30T07:26:17.000Z',
+    owner: useCasePayload.owner,
+  }),
+));
 
     const addCommentUseCase = new AddCommentUseCase({
       commentRepository: mockCommentRepository,
